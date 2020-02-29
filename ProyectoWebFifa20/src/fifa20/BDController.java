@@ -211,14 +211,12 @@ public class BDController {
 		}
 		return liga;
 	}
-
-	/**** TERMINARRRR *************************************************************/
 	
 	public Liga dameLigaPorCodigoJugador(int codJugador) {
 		Liga liga = new Liga();
 		PreparedStatement myPreparedStatement = null;
 		ResultSet myResultSet = null;
-		String query = "SELECT l.cod_liga FROM ligas l, equipos e, jugadores j WHERE "
+		String query = "SELECT l.* FROM ligas l, equipos e, jugadores j WHERE "
 				+ "= j.cod_equipo = e.cod_equipo AND e.cod_liga = l.cod_liga AND j.cod_jugador = ?";
 
 		try {
