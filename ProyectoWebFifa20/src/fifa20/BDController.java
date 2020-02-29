@@ -14,12 +14,12 @@ public class BDController {
 	private String db_server = "localhost:3306";
 	private String db = "fifa?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 	private String db_user = "root";
-	private String db_user_password = "";
+	private String db_user_password = "Alex2255";
 
 	public BDController() {
 		try {
 			try {
-				Class.forName("com.mysql.jdbc.Driver");
+				Class.forName("com.mysql.cj.jdbc.Driver");
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -211,13 +211,12 @@ public class BDController {
 		}
 		return liga;
 	}
-	
+
 	public Liga dameLigaPorCodigoJugador(int codJugador) {
 		Liga liga = new Liga();
 		PreparedStatement myPreparedStatement = null;
 		ResultSet myResultSet = null;
-		String query = "SELECT l.* FROM ligas l, equipos e, jugadores j WHERE "
-				+ "= j.cod_equipo = e.cod_equipo AND e.cod_liga = l.cod_liga AND j.cod_jugador = ?";
+		String query = "SELECT l.* FROM ligas l, equipos e, jugadores j WHERE j.cod_equipo = e.cod_equipo AND e.cod_liga = l.cod_liga AND j.cod_jugador = ?";
 
 		try {
 			myPreparedStatement = this.myConnection.prepareStatement(query);
@@ -240,6 +239,7 @@ public class BDController {
 		}
 		return liga;
 	}
+
 	/**** OPERACIONES CON EQUIPOS ****/
 
 	public ArrayList<Equipo> dameEquipos() {
@@ -310,7 +310,36 @@ public class BDController {
 
 			while (myResultSet.next()) {
 				Liga liga = dameLigaPorCodigo(myResultSet.getInt("cod_liga"));
-				new Equipo(myResultSet.getInt("cod_equipo"), myResultSet.getString("nombre"), liga);
+				equipo = new Equipo(myResultSet.getInt("cod_equipo"), myResultSet.getString("nombre"), liga);
+			}
+		} catch (SQLException e) {
+			return null;
+		} finally {
+			try {
+				myPreparedStatement.close();
+				myResultSet.close();
+			} catch (SQLException e) {
+				return null;
+			}
+		}
+		return equipo;
+	}
+
+	public Equipo dameEquipoPorCodigoJugador(int codJugador) {
+		Equipo equipo = new Equipo();
+		PreparedStatement myPreparedStatement = null;
+		ResultSet myResultSet = null;
+		String query = "SELECT e.* FROM equipos e JOIN jugadores j ON j.cod_equipo = e.cod_equipo AND j.cod_jugador = ?";
+		
+
+		try {
+			myPreparedStatement = this.myConnection.prepareStatement(query);
+			myPreparedStatement.setInt(1, codJugador);
+			myResultSet = myPreparedStatement.executeQuery();
+
+			while (myResultSet.next()) {
+				Liga liga = dameLigaPorCodigo(myResultSet.getInt("cod_liga"));
+				equipo = new Equipo(myResultSet.getInt("cod_equipo"), myResultSet.getString("nombre"), liga);
 			}
 		} catch (SQLException e) {
 			return null;

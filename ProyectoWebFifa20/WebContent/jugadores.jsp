@@ -48,11 +48,15 @@
 						<%
 							for (Jugador jugador : jugadores) {
 								Carta cartaJugador = bdController.dameCartaPorCodigoJugador(jugador.getCodigo_jugador());
+								Liga ligaJugador = bdController.dameLigaPorCodigoJugador(jugador.getCodigo_jugador());
+								Equipo equipoJugador = bdController.dameEquipoPorCodigoJugador(jugador.getCodigo_jugador());
 						%>
 						<tbody>
 
 							<tr>
-								<td width='60' rowspan="2">foto.Jug</td>
+								<td width='60' rowspan="2"><img width="80px"
+									alt="<%=jugador.getNombre_jugador()%>"
+									src="images/jugadores/<%=jugador.getCodigo_jugador()%>.png" /></td>
 								<td width='325' colspan="3" style="padding-left: 15px;"><%=jugador.getNombre_jugador()%></td>
 
 								<td rowspan="2" width='60' style="text-align: center;"><%=cartaJugador.getRat()%></td>
@@ -79,13 +83,15 @@
 							<tr>
 								<td width='45' style="text-align: right;"><img width="40px"
 									alt="<%=jugador.getPais()%>"
-									src="images/equipos/<%=jugador.getEquipo().getCodigo_equipo()%>.png" /></td>
+									src="images/equipos/<%=equipoJugador.getCodigo_equipo()%>.png" /></td>
+									
 								<td width='50' style="text-align: center;"><img
 									width="40px" alt="<%=jugador.getPais()%>"
 									src="images/paises/<%=jugador.getPais()%>.png" /></td>
+									
 								<td width='230'><img width="40px"
-									alt="<%=jugador.getPais()%>"
-									src="images/equipos/<%=jugador.getEquipo().getCodigo_equipo()%>.png" /></td>
+									alt="<%=ligaJugador.getNombre_liga()%>"
+									src="images/ligas/<%=ligaJugador.getCod_liga()%>.png" /></td>
 							</tr>
 
 						</tbody>
