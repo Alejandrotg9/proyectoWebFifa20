@@ -56,41 +56,54 @@
 							<tr>
 								<td width='60' rowspan="2"><img width="80px"
 									alt="<%=jugador.getNombre_jugador()%>"
+									title="<%=jugador.getNombre_jugador()%>"
 									src="images/jugadores/<%=jugador.getCodigo_jugador()%>.png" /></td>
 								<td width='325' colspan="3" style="padding-left: 15px;"><%=jugador.getNombre_jugador()%></td>
 
-								<td rowspan="2" width='60' style="text-align: center;"><%=cartaJugador.getRat()%></td>
+								<td rowspan="2" width='60' style="text-align: center;"><div
+										class="<%=Operaciones.ponerCss(cartaJugador.getRat())%>"><%=cartaJugador.getRat()%></div></td>
 								<td rowspan="2" width='60' style="text-align: center;"><%=cartaJugador.getPos()%></td>
 								<td rowspan="2" width='100' style="text-align: center;"><%=cartaJugador.getNombre_carta()%></td>
 								<td rowspan="2" width='100' style="text-align: center;"><%=cartaJugador.getPrecio()%></td>
 								<td rowspan="2" width='60' style="text-align: center;"><%=cartaJugador.getFiligranas()%></td>
 								<td rowspan="2" width='60' style="text-align: center;"><%=cartaJugador.getPierna_mala()%></td>
 
-								<td rowspan="2" width='60' style="text-align: center;"><%=cartaJugador.getPac()%></td>
+								<td rowspan="2" width="60" style="text-align: center;"><div
+										class="<%=Operaciones.ponerCss(cartaJugador.getPac())%>"><%=cartaJugador.getPac()%></div></td>
 
-								<td rowspan="2" width='60' style="text-align: center;"><%=cartaJugador.getSho()%></td>
+								<td rowspan="2" width="60" style="text-align: center;"><div
+										class="<%=Operaciones.ponerCss(cartaJugador.getSho())%>"><%=cartaJugador.getSho()%></div></td>
 
-								<td rowspan="2" width='60' style="text-align: center;"><%=cartaJugador.getPas()%></td>
+								<td width="60" rowspan="2" style="text-align: center;"><div
+										class="<%=Operaciones.ponerCss(cartaJugador.getPas())%>"><%=cartaJugador.getPas()%></div></td>
 
-								<td rowspan="2" width='60' style="text-align: center;"><%=cartaJugador.getDri()%></td>
+								<td width="60" rowspan="2" style="text-align: center;"><div
+										class="<%=Operaciones.ponerCss(cartaJugador.getDri())%>"><%=cartaJugador.getDri()%></div></td>
 
-								<td rowspan="2" width='60' style="text-align: center;"><%=cartaJugador.getDef()%></td>
+								<td width="60" rowspan="2" style="text-align: center;"><div
+										class="<%=Operaciones.ponerCss(cartaJugador.getDef())%>"><%=cartaJugador.getDef()%></div></td>
 
-								<td rowspan="2" width='60' style="text-align: center;"><%=cartaJugador.getPhy()%></td>
-								<td rowspan="2" width='60' style="text-align: center;"><%=jugador.getAltura()%></td>
+								<td width="60" rowspan="2" style="text-align: center;"><div
+										class="<%=Operaciones.ponerCss(cartaJugador.getPhy())%>"><%=cartaJugador.getPhy()%></div></td>
+
+								<td rowspan="2" width='60' style="text-align: center;"><%=jugador.getAltura()%>
+									cm</td>
 
 							</tr>
 							<tr>
 								<td width='45' style="text-align: right;"><img width="40px"
-									alt="<%=jugador.getPais()%>"
+									alt="<%=equipoJugador.getNombre_equipo()%>"
+									title="<%=equipoJugador.getNombre_equipo()%>"
 									src="images/equipos/<%=equipoJugador.getCodigo_equipo()%>.png" /></td>
-									
+
 								<td width='50' style="text-align: center;"><img
 									width="40px" alt="<%=jugador.getPais()%>"
+									title="<%=jugador.getPais()%>"
 									src="images/paises/<%=jugador.getPais()%>.png" /></td>
-									
+
 								<td width='230'><img width="40px"
 									alt="<%=ligaJugador.getNombre_liga()%>"
+									title="<%=ligaJugador.getNombre_liga()%>"
 									src="images/ligas/<%=ligaJugador.getCod_liga()%>.png" /></td>
 							</tr>
 
@@ -107,4 +120,3 @@
 
 <!-- INCLUYO EL FOOTER -->
 <jsp:include page="includes/footer.jsp" />
-
