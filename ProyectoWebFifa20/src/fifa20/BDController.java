@@ -14,7 +14,7 @@ public class BDController {
 	private String db_server = "localhost:3306";
 	private String db = "fifa?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 	private String db_user = "root";
-	private String db_user_password = "Alex2255";
+	private String db_user_password = "";
 
 	public BDController() {
 		try {
@@ -354,7 +354,7 @@ public class BDController {
 		return equipo;
 	}
 
-	public ArrayList<Equipo> dameEquiposliga(int codLiga) {
+	public ArrayList<Equipo> dameEquiposLiga(int codLiga) {
 		ArrayList<Equipo> equipos = new ArrayList<Equipo>();
 		PreparedStatement myPreparedStatement = null;
 		ResultSet myResultSet = null;
