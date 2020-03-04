@@ -26,6 +26,7 @@
 					<ul>
 						<li><a href="jugadores.jsp">Jugadores</a></li>
 						<li><a href="ligas.jsp">Ligas</a></li>
+						<li><a href="equipos.jsp">Equipos</a></li>
 
 					</ul></li>
 				<li><a href="#">Operaciones</a>
