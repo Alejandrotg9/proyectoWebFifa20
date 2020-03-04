@@ -36,10 +36,10 @@
 						<tbody>
 
 							<tr>
-								<td width='60' rowspan="2"><img width="60" title="<%= liga.getNombre_liga()%>" src="images/ligas/<%= liga.getCod_liga()%>.png"/></td>
-								<td width='300' colspan="3" style="padding-left: 15px; font-size: 1.3rem; color: brown;"><strong> <%= liga.getNombre_liga() %></strong></td>
+								<td width='60' rowspan="2"><a href="liga.jsp?codLiga= <%= liga.getCod_liga()%>"><img width="60" title="<%= liga.getNombre_liga()%>" src="images/ligas/<%= liga.getCod_liga()%>.png"/></a></td>
+								<td width='300' colspan="3" style="padding-left: 15px; font-size: 1.3rem; color: brown;"><strong><a href="liga.jsp?codLiga= <%= liga.getCod_liga()%>"> <%= liga.getNombre_liga() %></a></strong></td>
 								<%for(Equipo equipo : bdController.dameEquiposLiga(liga.getCod_liga())){ %>
-								<td rowspan="2" width='60' style="text-align: center;"><img width="40" title="<%= equipo.getNombre_equipo()%>" src="images/equipos/<%= equipo.getCodigo_equipo()%>.png"/></td>
+								<td rowspan="2" width='60' style="text-align: center;"><a href="equipo.jsp?codEquipo= <%= equipo.getCodigo_equipo()%>"><img width="40" title="<%= equipo.getNombre_equipo()%>" src="images/equipos/<%= equipo.getCodigo_equipo()%>.png"/></a></td>
 									<%} %>
 							</tr>
 							<tr>

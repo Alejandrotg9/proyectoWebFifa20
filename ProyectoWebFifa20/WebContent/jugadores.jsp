@@ -54,10 +54,10 @@
 						<tbody>
 
 							<tr>
-								<td width='60' rowspan="2"><img width="80px"
+								<td width='60' rowspan="2"><a href="jugador.jsp?codJugador= <%= jugador.getCodigo_jugador()%>"><img width="80px"
 									alt="<%=jugador.getNombre_jugador()%>"
 									title="<%=jugador.getNombre_jugador()%>"
-									src="images/jugadores/<%=jugador.getCodigo_jugador()%>.png" /></td>
+									src="images/jugadores/<%=jugador.getCodigo_jugador()%>.png" /></a></td>
 								<td width='325' colspan="3" style="padding-left: 15px;"><%=jugador.getNombre_jugador()%></td>
 
 								<td rowspan="2" width='60' style="text-align: center;"><div
@@ -91,20 +91,20 @@
 
 							</tr>
 							<tr>
-								<td width='45' style="text-align: right;"><img width="40px"
+								<td width='45' style="text-align: right;"><a href="equipo.jsp?codEquipo= <%= equipoJugador.getCodigo_equipo()%>"><img width="40px"
 									alt="<%=equipoJugador.getNombre_equipo()%>"
 									title="<%=equipoJugador.getNombre_equipo()%>"
-									src="images/equipos/<%=equipoJugador.getCodigo_equipo()%>.png" /></td>
+									src="images/equipos/<%=equipoJugador.getCodigo_equipo()%>.png" /></a></td>
 
 								<td width='50' style="text-align: center;"><img
 									width="40px" alt="<%=jugador.getPais()%>"
 									title="<%=jugador.getPais()%>"
 									src="images/paises/<%=jugador.getPais()%>.png" /></td>
 
-								<td width='230'><img width="40px"
+								<td width='230'><a href="liga.jsp?codLiga= <%= ligaJugador.getCod_liga()%>"><img width="40px"
 									alt="<%=ligaJugador.getNombre_liga()%>"
 									title="<%=ligaJugador.getNombre_liga()%>"
-									src="images/ligas/<%=ligaJugador.getCod_liga()%>.png" /></td>
+									src="images/ligas/<%=ligaJugador.getCod_liga()%>.png" /></a></td>
 							</tr>
 
 						</tbody>
