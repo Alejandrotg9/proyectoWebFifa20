@@ -37,60 +37,68 @@
 					<div class="c1">
 						<div class="grid-container"
 							style="background-image: url('./images/cartas/carta1.png');">
-							<div class="A"><%= carta.getRat() %></div>
-							<div class="B"><%= carta.getPos() %></div>
-							<div class="C"></div>
-							<div class="D"></div>
-							<div class="E"><img alt="<%= jugador.getNombre_jugador() %>" src="./images/jugadores/<%= jugador.getCodigo_jugador()%>.png"></div>
-							<div class="F"><%= jugador.getNombre_jugador() %></div>
+							<div class="A"><%=carta.getRat()%></div>
+							<div class="B"><%=carta.getPos()%></div>
+							<div class="C"><img width="45" alt="<%= jugador.getPais()%>" src="images/paises/<%= jugador.getPais()%>.png"></div>
+							<div class="D"><img width="30" alt="<%= jugador.getEquipo().getNombre_equipo()%>" src="images/equipos/<%= jugador.getEquipo().getCodigo_equipo()%>.png"></div>
+							<div class="E">
+								<img alt="<%=jugador.getNombre_jugador()%>"
+									src="./images/jugadores/<%=jugador.getCodigo_jugador()%>.png">
+							</div>
+							<div class="F"><%=jugador.getNombre_jugador()%></div>
 							<div class="G">
-								<%= carta.getPac()%> PAC &nbsp;&nbsp;|&nbsp;&nbsp; <%= carta.getDri()%> DRI<br> <%= carta.getSho()%> SHO
-								&nbsp;|&nbsp;&nbsp; <%= carta.getDef()%> DEF<br><%= carta.getPas()%> PAS
-								&nbsp;&nbsp;|&nbsp;&nbsp; <%= carta.getPhy()%> PHY
+								<%=carta.getPac()%>
+								PAC &nbsp;&nbsp;|&nbsp;&nbsp;
+								<%=carta.getDri()%>
+								DRI<br>
+								<%=carta.getSho()%>
+								SHO &nbsp;|&nbsp;&nbsp;
+								<%=carta.getDef()%>
+								DEF<br><%=carta.getPas()%>
+								PAS &nbsp;&nbsp;|&nbsp;&nbsp;
+								<%=carta.getPhy()%>
+								PHY
 							</div>
 						</div>
 					</div>
 					<div class="b">
-						<%
-							
-						%>
 						<div class="grid-container2">
 							<div class="grid-container2">
 								<div class="a2">PACE</div>
-								<div class="b2" style="color: #4caf50;"><%= carta.getPac()%></div>
-								<div class="c2" style="background-color: #4caf50; width:"<%= carta.getPac()%>px;"></div>
+								<div class="b2"
+									style="color:<%=Operaciones.ponerCssBarras(carta.getPac())[0]%>"><%=carta.getPac()%></div>
+								<div class="c2"
+									style="background-color: <%=Operaciones.ponerCssBarras(carta.getPac())[0]%>; width:<%=Operaciones.ponerCssBarras(carta.getPac())[1]%>px"></div>
 
-								<%
-									
-								%>
 								<div class="d2">SHOOTING</div>
-								<div class="e2" style="color: #4caf50;">88</div>
-								<div class="f2" style="background-color: #4caf50; width: 300px;"></div>
-								<%
-									
-								%>
+								<div class="e2"
+									style="color:<%=Operaciones.ponerCssBarras(carta.getSho())[0]%>;"><%=carta.getSho()%></div>
+								<div class="f2"
+									style="background-color: <%=Operaciones.ponerCssBarras(carta.getSho())[0]%>; width: <%=Operaciones.ponerCssBarras(carta.getSho())[1]%>px;"></div>
 
 								<div class="g2">PASSING</div>
-								<div class="h2" style="color: #e9bc0b;">88</div>
-								<div class="i2" style="background-color: #e9bc0b; width: 280px;"></div>
-								<%
-									
-								%>
+								<div class="h2"
+									style="color: <%=Operaciones.ponerCssBarras(carta.getPas())[0]%>;"><%=carta.getPas()%></div>
+								<div class="i2"
+									style="background-color: <%=Operaciones.ponerCssBarras(carta.getPas())[0]%>; width: <%=Operaciones.ponerCssBarras(carta.getPas())[1]%>px;"></div>
+
 								<div class="j2">DRIBBLING</div>
-								<div class="k2" style="color: #fb8c00;">88</div>
-								<div class="l2" style="background-color: #fb8c00; width: 120px;"></div>
-								<%
-									
-								%>
+								<div class="k2"
+									style="color: <%=Operaciones.ponerCssBarras(carta.getDri())[0]%>;"><%=carta.getDri()%></div>
+								<div class="l2"
+									style="background-color: <%=Operaciones.ponerCssBarras(carta.getDri())[0]%>; width: <%=Operaciones.ponerCssBarras(carta.getDri())[1]%>px;"></div>
+
 								<div class="m2">DEFENDING</div>
-								<div class="n2" style="color: #4caf50;">88</div>
-								<div class="o2" style="background-color: #4caf50; width: 240px;"></div>
-								<%
-									
-								%>
+								<div class="n2"
+									style="color: <%=Operaciones.ponerCssBarras(carta.getDef())[0]%>;"><%=carta.getDef()%></div>
+								<div class="o2"
+									style="background-color: <%=Operaciones.ponerCssBarras(carta.getDef())[0]%>; width: <%=Operaciones.ponerCssBarras(carta.getDef())[1]%>px;"></div>
+
 								<div class="p2">PHYSICALITY</div>
-								<div class="q2" style="color: #4caf50;">88</div>
-								<div class="r2" style="background-color: #4caf50; width: 200px;"></div>
+								<div class="q2"
+									style="color: <%=Operaciones.ponerCssBarras(carta.getPhy())[0]%>;"><%=carta.getPhy()%></div>
+								<div class="r2"
+									style="background-color: <%=Operaciones.ponerCssBarras(carta.getPhy())[0]%>; width: <%=Operaciones.ponerCssBarras(carta.getPhy())[1]%>px;"></div>
 							</div>
 						</div>
 					</div>

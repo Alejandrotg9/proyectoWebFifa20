@@ -61,7 +61,7 @@
 								<td width='325' colspan="3" style="padding-left: 15px;"><%=jugador.getNombre_jugador()%></td>
 
 								<td rowspan="2" width='60' style="text-align: center;"><div
-										class="<%=Operaciones.ponerCss(cartaJugador.getRat())%>"><%=cartaJugador.getRat()%></div></td>
+										class="<%=Operaciones.ponerCssEstadisticas(cartaJugador.getRat())%>"><%=cartaJugador.getRat()%></div></td>
 								<td rowspan="2" width='60' style="text-align: center;"><%=cartaJugador.getPos()%></td>
 								<td rowspan="2" width='100' style="text-align: center;"><%=cartaJugador.getNombre_carta()%></td>
 								<td rowspan="2" width='100' style="text-align: center;"><%=cartaJugador.getPrecio()%></td>
@@ -69,22 +69,22 @@
 								<td rowspan="2" width='60' style="text-align: center;"><%=cartaJugador.getPierna_mala()%></td>
 
 								<td rowspan="2" width="60" style="text-align: center;"><div
-										class="<%=Operaciones.ponerCss(cartaJugador.getPac())%>"><%=cartaJugador.getPac()%></div></td>
+										class="<%=Operaciones.ponerCssEstadisticas(cartaJugador.getPac())%>"><%=cartaJugador.getPac()%></div></td>
 
 								<td rowspan="2" width="60" style="text-align: center;"><div
-										class="<%=Operaciones.ponerCss(cartaJugador.getSho())%>"><%=cartaJugador.getSho()%></div></td>
+										class="<%=Operaciones.ponerCssEstadisticas(cartaJugador.getSho())%>"><%=cartaJugador.getSho()%></div></td>
 
 								<td width="60" rowspan="2" style="text-align: center;"><div
-										class="<%=Operaciones.ponerCss(cartaJugador.getPas())%>"><%=cartaJugador.getPas()%></div></td>
+										class="<%=Operaciones.ponerCssEstadisticas(cartaJugador.getPas())%>"><%=cartaJugador.getPas()%></div></td>
 
 								<td width="60" rowspan="2" style="text-align: center;"><div
-										class="<%=Operaciones.ponerCss(cartaJugador.getDri())%>"><%=cartaJugador.getDri()%></div></td>
+										class="<%=Operaciones.ponerCssEstadisticas(cartaJugador.getDri())%>"><%=cartaJugador.getDri()%></div></td>
 
 								<td width="60" rowspan="2" style="text-align: center;"><div
-										class="<%=Operaciones.ponerCss(cartaJugador.getDef())%>"><%=cartaJugador.getDef()%></div></td>
+										class="<%=Operaciones.ponerCssEstadisticas(cartaJugador.getDef())%>"><%=cartaJugador.getDef()%></div></td>
 
 								<td width="60" rowspan="2" style="text-align: center;"><div
-										class="<%=Operaciones.ponerCss(cartaJugador.getPhy())%>"><%=cartaJugador.getPhy()%></div></td>
+										class="<%=Operaciones.ponerCssEstadisticas(cartaJugador.getPhy())%>"><%=cartaJugador.getPhy()%></div></td>
 
 								<td rowspan="2" width='60' style="text-align: center;"><%=jugador.getAltura()%>
 									cm</td>
