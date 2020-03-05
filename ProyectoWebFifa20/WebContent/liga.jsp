@@ -4,7 +4,8 @@
 <%@ page import="java.util.*"%>
 <%
 	BDController bdController = new BDController();
-	ArrayList<Equipo> equipos = bdController.dameEquipos();
+	ArrayList<Equipo> equipos = bdController.dameEquiposLiga(Integer.parseInt(request.getParameter("codLiga")));
+	Liga liga = bdController.dameLiga(Integer.parseInt(request.getParameter("codLiga")));
 %>
 
 <!-- INCLUYO LA CABECERA -->
@@ -19,7 +20,8 @@
 
 			<article>
 				<header>
-					<h2>Equipos</h2>
+						<img width="100" src="./images/ligas/<%= liga.getCod_liga()%>.png" style="margin-top: 1.5rem"/>
+					<h2><%= liga.getNombre_liga()%></h2>
 				</header>
 
 				<div class="table-wrapper">

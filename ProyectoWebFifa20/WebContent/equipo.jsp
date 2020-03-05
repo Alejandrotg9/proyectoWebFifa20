@@ -4,7 +4,9 @@
 <%@ page import="java.util.*"%>
 <%
 	BDController bdController = new BDController();
-	ArrayList<Jugador> jugadores = bdController.dameJugadores();
+	ArrayList<Jugador> jugadores = bdController
+			.dameJugadoresEquipo(Integer.parseInt(request.getParameter("codEquipo")));
+	Equipo equipo = bdController.dameEquipo(Integer.parseInt(request.getParameter("codEquipo")));
 %>
 
 <!-- INCLUYO LA CABECERA -->
@@ -19,8 +21,8 @@
 				<header>
 					<table>
 						<tr style="border: 0px;">
-							<td style="background-color: white;"><h2>Jugadores</h2></td>
-							<td style="text-align: right; background-color: white;"></td>
+						<img width="100" src="./images/equipos/<%= equipo.getCodigo_equipo()%>.png" style="margin-top: 1.5rem"/>
+							<td style="background-color: white;"><h2 style="margin-bottom: -1.5rem;"><%= equipo.getNombre_equipo() %></h2></td>
 						</tr>
 					</table>
 				</header>
@@ -54,10 +56,11 @@
 						<tbody>
 
 							<tr>
-								<td width='60' rowspan="2"><a href="jugador.jsp?codJugador=<%= jugador.getCodigo_jugador()%>"><img width="80px"
-									alt="<%=jugador.getNombre_jugador()%>"
-									title="<%=jugador.getNombre_jugador()%>"
-									src="images/jugadores/<%=jugador.getCodigo_jugador()%>.png" /></a></td>
+								<td width='60' rowspan="2"><a
+									href="jugador.jsp?codJugador=<%=jugador.getCodigo_jugador()%>"><img
+										width="80px" alt="<%=jugador.getNombre_jugador()%>"
+										title="<%=jugador.getNombre_jugador()%>"
+										src="images/jugadores/<%=jugador.getCodigo_jugador()%>.png" /></a></td>
 								<td width='325' colspan="3" style="padding-left: 15px;"><%=jugador.getNombre_jugador()%></td>
 
 								<td rowspan="2" width='60' style="text-align: center;"><div
@@ -91,20 +94,22 @@
 
 							</tr>
 							<tr>
-								<td width='45' style="text-align: right;"><a href="equipo.jsp?codEquipo=<%= equipoJugador.getCodigo_equipo()%>"><img width="40px"
-									alt="<%=equipoJugador.getNombre_equipo()%>"
-									title="<%=equipoJugador.getNombre_equipo()%>"
-									src="images/equipos/<%=equipoJugador.getCodigo_equipo()%>.png" /></a></td>
+								<td width='45' style="text-align: right;"><a
+									href="equipo.jsp?codEquipo=<%=equipoJugador.getCodigo_equipo()%>"><img
+										width="40px" alt="<%=equipoJugador.getNombre_equipo()%>"
+										title="<%=equipoJugador.getNombre_equipo()%>"
+										src="images/equipos/<%=equipoJugador.getCodigo_equipo()%>.png" /></a></td>
 
 								<td width='50' style="text-align: center;"><img
 									width="40px" alt="<%=jugador.getPais()%>"
 									title="<%=jugador.getPais()%>"
 									src="images/paises/<%=jugador.getPais()%>.png" /></td>
 
-								<td width='230'><a href="liga.jsp?codLiga=<%= ligaJugador.getCod_liga()%>"><img width="40px"
-									alt="<%=ligaJugador.getNombre_liga()%>"
-									title="<%=ligaJugador.getNombre_liga()%>"
-									src="images/ligas/<%=ligaJugador.getCod_liga()%>.png" /></a></td>
+								<td width='230'><a
+									href="liga.jsp?codLiga=<%=ligaJugador.getCod_liga()%>"><img
+										width="40px" alt="<%=ligaJugador.getNombre_liga()%>"
+										title="<%=ligaJugador.getNombre_liga()%>"
+										src="images/ligas/<%=ligaJugador.getCod_liga()%>.png" /></a></td>
 							</tr>
 
 						</tbody>

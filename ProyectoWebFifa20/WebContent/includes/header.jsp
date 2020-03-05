@@ -21,7 +21,7 @@
 			<!-- Nav -->
 			<nav id="nav">
 			<ul>
-				<li class="current"><a href="index.jsp">Inicio</a></li>
+				<li><a href="index.jsp">Inicio</a></li>
 				<li><a>Listados</a>
 					<ul>
 						<li><a href="jugadores.jsp">Jugadores</a></li>
