@@ -19,22 +19,23 @@
 			</section>
 			<section class="col-6 col-12-narrower">
 				<h3>Solicita Información</h3>
-				<form>
+				<form method="get" action="./buscar.jsp">
 					<div class="row gtr-50">
-						<div class="col-6 col-12-mobilep">
-							<input type="text" name="name" id="name" placeholder="Name" />
+						<div class="col-6 col-12-mobilep" style="width: 450px;">
+							<input required="required" type="text" name="query" id="name" placeholder="Introduzca el nombre de un Equipo, Jugador o Liga." />
 						</div>
+
 						<div class="col-6 col-12-mobilep">
-							<input type="email" name="email" id="email" placeholder="Email" />
-						</div>
-						<div class="col-12">
-							<textarea name="message" id="message" placeholder="Message"
-								rows="5"></textarea>
+							<select id ="select-search" name="opcion" required="required">
+								<option value="jugador">Jugador</option>
+								<option value="equipo">Equipo</option>
+								<option value="liga">Liga</option>
+							</select>
 						</div>
 						<div class="col-12">
 							<ul class="actions">
 								<li><input type="submit" class="button alt"
-									value="Enviar Email" /></li>
+									value="Buscar" /></li>
 							</ul>
 						</div>
 					</div>

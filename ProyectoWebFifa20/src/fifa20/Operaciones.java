@@ -27,8 +27,13 @@ public class Operaciones {
 		String[] css = new String[2];
 
 		if (num >= 0 && num <= 49) {
-			css[0] = "#f44336";
-			css[1] = "50";
+			if (num == 0) {
+				css[0] = "#f44336";
+				css[1] = "0";
+			} else {
+				css[0] = "#f44336";
+				css[1] = "50";
+			}
 
 		} else if (num >= 50 && num <= 69) {
 			css[0] = "#fb8c00";
@@ -43,8 +48,14 @@ public class Operaciones {
 			css[1] = "200";
 
 		} else if (num >= 90 && num <= 99) {
-			css[0] = "#007e33";
-			css[1] = "300";
+			if (num >= 95 && num <= 100) {
+
+				css[0] = "#007e33";
+				css[1] = "285";
+			} else {
+				css[0] = "#007e33";
+				css[1] = "300";
+			}
 		}
 		return css;
 	}

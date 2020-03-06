@@ -3709,6 +3709,18 @@ div.mm-dropdown ul li img {
     max-height: 210px;
     overflow-x: hidden;
 }
-    
-    
+
+#select-search{
+	width: 50%;
+	height: 50px;
+	cursor: pointer;
+	border: solid 1px #2d2c2c;
+	border-radius: 5px;
+	padding: 5px;
+}   
+
+option{
+	font-size: 1rem;
+	cursor: pointer;
+} 
     
