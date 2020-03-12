@@ -14,7 +14,7 @@ public class BDController {
 	private String db_server = "localhost:3306";
 	private String db = "fifa?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 	private String db_user = "root";
-	private String db_user_password = "";
+	private String db_user_password = "Alex2255";
 
 	public BDController() {
 		try {
@@ -330,7 +330,6 @@ public class BDController {
 		PreparedStatement myPreparedStatement = null;
 		ResultSet myResultSet = null;
 		String query = "SELECT e.* FROM equipos e JOIN jugadores j ON j.cod_equipo = e.cod_equipo AND j.cod_jugador = ?";
-		
 
 		try {
 			myPreparedStatement = this.myConnection.prepareStatement(query);
@@ -388,11 +387,75 @@ public class BDController {
 		Carta carta = new Carta();
 		PreparedStatement myPreparedStatement = null;
 		ResultSet myResultSet = null;
-		String query = "SELECT * FROM cartas WHERE cod_jugador = ?";
+		String query = "SELECT * FROM cartas WHERE cod_jugador = ? AND nombre = 'Simple'";
 
 		try {
 			myPreparedStatement = this.myConnection.prepareStatement(query);
 			myPreparedStatement.setInt(1, codJugador);
+			myResultSet = myPreparedStatement.executeQuery();
+
+			while (myResultSet.next()) {
+				Jugador jugador = dameJugador(myResultSet.getInt("cod_jugador"));
+				carta = new Carta(myResultSet.getString("nombre"), jugador, myResultSet.getInt("rat"),
+						myResultSet.getString("pos"), myResultSet.getInt("precio"), myResultSet.getInt("pac"),
+						myResultSet.getInt("sho"), myResultSet.getInt("pas"), myResultSet.getInt("dri"),
+						myResultSet.getInt("def"), myResultSet.getInt("phy"), myResultSet.getInt("pierna_mala"),
+						myResultSet.getInt("filigranas"));
+			}
+		} catch (SQLException e) {
+			return null;
+		} finally {
+			try {
+				myPreparedStatement.close();
+				myResultSet.close();
+			} catch (SQLException e) {
+				return null;
+			}
+		}
+		return carta;
+	}
+
+	public ArrayList<Carta> dameCartasPorCodigoJugador(int codJugador) {
+		ArrayList<Carta> cartas = new ArrayList<Carta>();
+		PreparedStatement myPreparedStatement = null;
+		ResultSet myResultSet = null;
+		String query = "SELECT * FROM cartas WHERE cod_jugador = ? ORDER BY rat ASC";
+
+		try {
+			myPreparedStatement = this.myConnection.prepareStatement(query);
+			myPreparedStatement.setInt(1, codJugador);
+			myResultSet = myPreparedStatement.executeQuery();
+
+			while (myResultSet.next()) {
+				Jugador jugador = dameJugador(myResultSet.getInt("cod_jugador"));
+				cartas.add(new Carta(myResultSet.getString("nombre"), jugador, myResultSet.getInt("rat"),
+						myResultSet.getString("pos"), myResultSet.getInt("precio"), myResultSet.getInt("pac"),
+						myResultSet.getInt("sho"), myResultSet.getInt("pas"), myResultSet.getInt("dri"),
+						myResultSet.getInt("def"), myResultSet.getInt("phy"), myResultSet.getInt("pierna_mala"),
+						myResultSet.getInt("filigranas")));
+			}
+		} catch (SQLException e) {
+			return null;
+		} finally {
+			try {
+				myPreparedStatement.close();
+				myResultSet.close();
+			} catch (SQLException e) {
+				return null;
+			}
+		}
+		return cartas;
+	}
+	
+	public Carta dameCartaPorNombreCarta(String nombreCarta) {
+		Carta carta = new Carta();
+		PreparedStatement myPreparedStatement = null;
+		ResultSet myResultSet = null;
+		String query = "SELECT * FROM cartas WHERE nombre = ?";
+
+		try {
+			myPreparedStatement = this.myConnection.prepareStatement(query);
+			myPreparedStatement.setString(1, nombreCarta);
 			myResultSet = myPreparedStatement.executeQuery();
 
 			while (myResultSet.next()) {

@@ -6,7 +6,13 @@
 <%
 	BDController bdController = new BDController();
 	Jugador jugador = bdController.dameJugador(Integer.parseInt(request.getParameter("codJugador")));
-	Carta carta = bdController.dameCartaPorCodigoJugador(jugador.getCodigo_jugador());
+	Carta carta = new Carta();
+	
+	if (request.getParameter("nombreCarta") == null) {
+		 carta = bdController.dameCartaPorCodigoJugador(Integer.parseInt(request.getParameter("codJugador")));
+	} else {
+		 carta = bdController.dameCartaPorNombreCarta(request.getParameter("nombreCarta"));
+	}
 %>
 
 <!-- INCLUYO LA CABECERA -->
@@ -36,13 +42,20 @@
 				<div class="grid-containerGeneral">
 					<div class="c1">
 						<div class="grid-container"
-							style="background-image: url('./images/cartas/carta1.png');">
+							style="background-image: url('./images/cartas/<%= carta.getNombre_carta() %>.png');">
 							<div class="A"><%=carta.getRat()%></div>
 							<div class="B"><%=carta.getPos()%></div>
-							<div class="C"><img width="45" alt="<%= jugador.getPais()%>" src="images/paises/<%= jugador.getPais()%>.png"></div>
-							<div class="D"><img width="30" alt="<%= jugador.getEquipo().getNombre_equipo()%>" src="images/equipos/<%= jugador.getEquipo().getCodigo_equipo()%>.png"></div>
+							<div class="C">
+								<img width="45" alt="<%=jugador.getPais()%>"
+									src="images/paises/<%=jugador.getPais()%>.png">
+							</div>
+							<div class="D">
+								<img width="30"
+									alt="<%=jugador.getEquipo().getNombre_equipo()%>"
+									src="images/equipos/<%=jugador.getEquipo().getCodigo_equipo()%>.png">
+							</div>
 							<div class="E">
-								<img alt="<%=jugador.getNombre_jugador()%>"
+								<img width="110px" alt="<%=jugador.getNombre_jugador()%>"
 									src="./images/jugadores/<%=jugador.getCodigo_jugador()%>.png">
 							</div>
 							<div class="F"><%=jugador.getNombre_jugador()%></div>
@@ -106,19 +119,27 @@
 				<div class="grid-containerGeneral">
 					<div class="c1"
 						style="padding-left: 5px; padding-top: 5px; text-align: center;">
-						<table style="border-color: white; background-color: white;">
+						<%
+							ArrayList<Carta> cartasJugador = bdController.dameCartasPorCodigoJugador(jugador.getCodigo_jugador());
+							if (cartasJugador.size() > 1) {
+						%>
+						<table
+							style="border-color: white; background-color: white;">
 							<tr style="border-color: white; background-color: white;">
-								<td style="border-color: white; background-color: white;"><div
-										class="Simple" style="text-align: center;">94</div></td>
-
-								<td style="border-color: white; background-color: white;"><div
-										class='Simple' style="text-align: center;">97</div></td>
-								<td style="border-color: white; background-color: white;"><div
-										class='Simple' style="text-align: center;">98</div></td>
-								<td style="border-color: white; background-color: white;"><div
-										class='Simple' style="text-align: center;">99</div></td>
+								<%
+									for (int i = 0; i < cartasJugador.size(); i++) {
+								%>
+								<td style="border-color: white; background-color: white;"><a
+									href="jugador.jsp?codJugador=<%=jugador.getCodigo_jugador()%>&nombreCarta=<%=cartasJugador.get(i).getNombre_carta()%>"><div
+											class="Simple" style="text-align: center;"><%=cartasJugador.get(i).getRat()%></div></a></td>
+								<%
+									}
+								%>
 							</tr>
 						</table>
+						<%
+							}
+						%>
 					</div>
 
 
