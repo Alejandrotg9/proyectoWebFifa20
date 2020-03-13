@@ -7,6 +7,9 @@
 	content="width=device-width, initial-scale=1, user-scalable=no" />
 <link rel="stylesheet" href="./assets/css/main.css" />
 <link rel="stylesheet" href="../assets/css/main.css" />
+<link rel="stylesheet" href="./assets/css/dropdown.css" />
+<link rel="stylesheet" href="../assets/css/dropdown.css" />
+
 <title>Proyecto Web FIFA20</title>
 </head>
 <body class="is-preload">

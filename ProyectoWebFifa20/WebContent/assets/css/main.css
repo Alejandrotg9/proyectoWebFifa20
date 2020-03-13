@@ -4547,5 +4547,16 @@ div.mm-dropdown ul li img {
 
 option {
 	font-size: 1rem;
+	cursor: pointer !important;
+}
+
+label{
+	font-size: 1.2rem;
+}
+
+select{
+	border: solid 1px #2d2c2c !important;
+	line-height: 1rem !important;
+	font-size: 1.2rem !important;
 	cursor: pointer;
 }

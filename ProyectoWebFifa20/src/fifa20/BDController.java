@@ -127,6 +127,60 @@ public class BDController {
 		return jugador;
 	}
 
+	public Integer dameCodUltimoJugador() {
+		int codJugador = 0;
+		Statement myStatement = null;
+		ResultSet myResultSet = null;
+		String query = "SELECT MAX(cod_jugador) codJugador FROM jugadores";
+
+		try {
+			myStatement = this.myConnection.createStatement();
+			myResultSet = myStatement.executeQuery(query);
+
+			while (myResultSet.next()) {
+				codJugador = myResultSet.getInt("codJugador");
+			}
+		} catch (SQLException e) {
+			return 0;
+		} finally {
+			try {
+				myStatement.close();
+				myResultSet.close();
+			} catch (SQLException e) {
+				return 0;
+			}
+		}
+		return codJugador;
+	}
+
+	public boolean altaJugador(Jugador jugador) {
+		boolean correcto = false;
+		PreparedStatement myPreparedStatement = null;
+		String query = "INSERT INTO jugadores(cod_jugador, nombre, cod_equipo, pierna, altura, pais) VALUES (?,?,?,?,?,?)";
+		try {
+			myPreparedStatement = this.myConnection.prepareStatement(query);
+			myPreparedStatement.setInt(1, jugador.getCodigo_jugador());
+			myPreparedStatement.setString(2, jugador.getNombre_jugador());
+			myPreparedStatement.setInt(3, jugador.getEquipo().getCodigo_equipo());
+			myPreparedStatement.setString(4, jugador.getPierna());
+			myPreparedStatement.setInt(5, jugador.getAltura());
+			myPreparedStatement.setString(6, jugador.getPais());
+			myPreparedStatement.executeUpdate();
+
+			correcto = true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			try {
+				myPreparedStatement.close();
+			} catch (SQLException e) {
+				return false;
+			}
+		}
+		return correcto;
+	}
+
 	/**** OPERACIONES CON LIGAS ****/
 
 	public ArrayList<Liga> dameLigas() {
@@ -446,7 +500,7 @@ public class BDController {
 		}
 		return cartas;
 	}
-	
+
 	public Carta dameCartaPorNombreCarta(String nombreCarta) {
 		Carta carta = new Carta();
 		PreparedStatement myPreparedStatement = null;

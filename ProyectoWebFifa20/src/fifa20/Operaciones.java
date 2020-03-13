@@ -59,4 +59,10 @@ public class Operaciones {
 		}
 		return css;
 	}
+
+	public static int ponerCodJugador() {
+		BDController bdController = new BDController();
+		int nuevoCodJugador = bdController.dameCodUltimoJugador() + 1;
+		return nuevoCodJugador;
+	}
 }

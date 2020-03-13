@@ -50,9 +50,9 @@
 									src="images/paises/<%=jugador.getPais()%>.png">
 							</div>
 							<div class="D">
-								<img width="30"
+								<a href="equipo.jsp?codEquipo=<%=jugador.getEquipo().getCodigo_equipo()%>"><img width="30"
 									alt="<%=jugador.getEquipo().getNombre_equipo()%>"
-									src="images/equipos/<%=jugador.getEquipo().getCodigo_equipo()%>.png">
+									src="images/equipos/<%=jugador.getEquipo().getCodigo_equipo()%>.png"></a>
 							</div>
 							<div class="E">
 								<img width="110px" alt="<%=jugador.getNombre_jugador()%>"

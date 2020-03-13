@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-	
+
 <!-- INCLUYO LA CABECERA -->
 <jsp:include page="includes/header.jsp" />
 
