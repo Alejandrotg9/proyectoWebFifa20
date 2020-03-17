@@ -9,13 +9,8 @@
 	String error = request.getParameter("error");
 	String estado = request.getParameter("estado");
 %>
-<jsp:include page="../includes/header.jsp"></jsp:include>
-<head>
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-	crossorigin="anonymous">
-</head>
+<jsp:include page="../includes/admin-header.jsp"></jsp:include>
+
 <section class="wrapper style1" style="height: 500px;">
 	<div class="container-fluid">
 		<div id="content">
@@ -28,7 +23,7 @@
 						<div class="row gtr-50">
 							<label class="">Nombre del Jugador <input type="text"
 								name="nombreJugador" required="required" placeholder="Nombre"
-								style="width: 450px" ; maxlength="20" />
+								style="width: 450px" maxlength="20" />
 							</label> <label>Equipo <select class="custom-select"
 								required="required" id="inputGroupSelect02" name="codEquipo"
 								style="height: 3.2rem">
@@ -68,16 +63,10 @@
 					%>
 					<div class="alert alert-danger container w-25" role="alert">
 						<%
-							if (error.equalsIgnoreCase("opt_no_encontrada")) {
-						%>
-						Operación no válida.
-						<%
-							} else if (error.equalsIgnoreCase("opt_fallida")) {
+							if (error.equalsIgnoreCase("opt_fallida")) {
 						%>
 						Error al añadir al Jugador.
-						<%
-							}
-						%>
+						<%} %>
 					</div>
 					<%
 						}

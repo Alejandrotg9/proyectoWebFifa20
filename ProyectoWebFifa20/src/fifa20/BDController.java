@@ -181,6 +181,29 @@ public class BDController {
 		return correcto;
 	}
 
+	public boolean eliminarJugador(int codJugador) {
+		boolean eliminado = false;
+		PreparedStatement myPreparedStatement = null;
+		String query = "DELETE FROM jugadores WHERE cod_jugador = ?";
+		try {
+			myPreparedStatement = this.myConnection.prepareStatement(query);
+			myPreparedStatement.setInt(1, codJugador);
+			myPreparedStatement.executeUpdate();
+
+			eliminado = true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			try {
+				myPreparedStatement.close();
+			} catch (SQLException e) {
+				return false;
+			}
+		}
+		return eliminado;
+	}
+
 	/**** OPERACIONES CON LIGAS ****/
 
 	public ArrayList<Liga> dameLigas() {

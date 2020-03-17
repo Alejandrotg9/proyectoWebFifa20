@@ -28,8 +28,17 @@
 		}
 
 		break;
+	case "bajaJugador":
+		int codJugador = Integer.parseInt(request.getParameter("codJugador"));
+		
+		if (bdController.eliminarJugador(codJugador)) {
+			response.sendRedirect("./baja-jugador.jsp?estado=opt_completada");
+		} else {
+			response.sendRedirect("./baja-jugador.jsp?error=opt_fallida");
+		}
+		break;
 	default:
-		response.sendRedirect("./alta-jugador.jsp?error=opt_no_encontrada");
+		response.sendRedirect("../index.jsp");
 		break;
 	}
 %>
