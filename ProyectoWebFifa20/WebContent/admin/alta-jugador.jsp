@@ -66,7 +66,13 @@
 							if (error.equalsIgnoreCase("opt_fallida")) {
 						%>
 						Error al añadir al Jugador.
-						<%} %>
+						<%
+							} else if (error.equalsIgnoreCase("jugador_existe")) {
+						%>
+						El Jugador ya esiste.
+						<%
+							}
+						%>
 					</div>
 					<%
 						}

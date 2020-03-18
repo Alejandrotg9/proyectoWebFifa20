@@ -17,15 +17,14 @@
 			<!-- Content -->
 			<article>
 				<section class="col-6 col-12-narrower mx-auto">
-					<h2>Baja Jugador</h2>
+					<h2>Baja Liga</h2>
 					<form class="d-inline-block" action="operaciones.jsp" method="POST">
 						<div class="row gtr-50">
-							<label class="">Código del jugador <input type="number"
-								name="codJugador" required="required"
-								placeholder="Código del Jugador" style="width: 450px"
+							<label class="">Código de la Liga <input type="number"
+								name="codLiga" required="required"
+								placeholder="Código de la Liga" style="width: 450px"
 								maxlength="3" />
-							</label> <input name="opt" value="bajaJugador"
-								style="visibility: hidden;" />
+							</label> <input name="opt" value="bajaLiga" style="visibility: hidden;" />
 						</div>
 
 						<div style="padding-top: 22px;">
@@ -44,11 +43,11 @@
 						<%
 							if (error.equalsIgnoreCase("opt_fallida")) {
 						%>
-						Error al eliminar al Jugador.
+						Error al eliminar la Liga.
 						<%
-							} else if (error.equalsIgnoreCase("jugador_no_existe")) {
+							} else if (error.equalsIgnoreCase("liga_no_existe")) {
 						%>
-						No exsiste jugador con ese código.
+						No exsiste liga con ese código.
 						<%
 							}
 						%>
@@ -63,7 +62,7 @@
 						<%
 							if (estado.equalsIgnoreCase("opt_completada")) {
 						%>
-						Jugador eliminado correctamente.
+						Liga eliminada correctamente.
 						<%
 							}
 						%>

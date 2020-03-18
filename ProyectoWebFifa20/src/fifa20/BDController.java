@@ -204,6 +204,33 @@ public class BDController {
 		return eliminado;
 	}
 
+	public boolean existeJugador(int codJugador) {
+		boolean existe = false;
+		PreparedStatement myPreparedStatement = null;
+		ResultSet myResultSet = null;
+		String query = "SELECT cod_jugador FROM jugadores WHERE cod_jugador = ?";
+
+		try {
+			myPreparedStatement = this.myConnection.prepareStatement(query);
+			myPreparedStatement.setInt(1, codJugador);
+			myResultSet = myPreparedStatement.executeQuery();
+
+			while (myResultSet.next()) {
+				existe = true;
+			}
+		} catch (SQLException e) {
+			return false;
+		} finally {
+			try {
+				myPreparedStatement.close();
+				myResultSet.close();
+			} catch (SQLException e) {
+				return false;
+			}
+		}
+		return existe;
+	}
+
 	/**** OPERACIONES CON LIGAS ****/
 
 	public ArrayList<Liga> dameLigas() {
@@ -315,6 +342,56 @@ public class BDController {
 			}
 		}
 		return liga;
+	}
+
+	public boolean existeLiga(int codLiga) {
+		boolean existe = false;
+		PreparedStatement myPreparedStatement = null;
+		ResultSet myResultSet = null;
+		String query = "SELECT cod_liga FROM ligas WHERE cod_liga = ?";
+
+		try {
+			myPreparedStatement = this.myConnection.prepareStatement(query);
+			myPreparedStatement.setInt(1, codLiga);
+			myResultSet = myPreparedStatement.executeQuery();
+
+			while (myResultSet.next()) {
+				existe = true;
+			}
+		} catch (SQLException e) {
+			return false;
+		} finally {
+			try {
+				myPreparedStatement.close();
+				myResultSet.close();
+			} catch (SQLException e) {
+				return false;
+			}
+		}
+		return existe;
+	}
+
+	public boolean eliminarLiga(int codLiga) {
+		boolean eliminado = false;
+		PreparedStatement myPreparedStatement = null;
+		String query = "DELETE FROM ligas WHERE cod_liga = ?";
+		try {
+			myPreparedStatement = this.myConnection.prepareStatement(query);
+			myPreparedStatement.setInt(1, codLiga);
+			myPreparedStatement.executeUpdate();
+
+			eliminado = true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			try {
+				myPreparedStatement.close();
+			} catch (SQLException e) {
+				return false;
+			}
+		}
+		return eliminado;
 	}
 
 	/**** OPERACIONES CON EQUIPOS ****/
@@ -456,6 +533,56 @@ public class BDController {
 			}
 		}
 		return equipos;
+	}
+
+	public boolean existeEquipo(int codEquipo) {
+		boolean existe = false;
+		PreparedStatement myPreparedStatement = null;
+		ResultSet myResultSet = null;
+		String query = "SELECT cod_equipo FROM equipos WHERE cod_equipo = ?";
+
+		try {
+			myPreparedStatement = this.myConnection.prepareStatement(query);
+			myPreparedStatement.setInt(1, codEquipo);
+			myResultSet = myPreparedStatement.executeQuery();
+
+			while (myResultSet.next()) {
+				existe = true;
+			}
+		} catch (SQLException e) {
+			return false;
+		} finally {
+			try {
+				myPreparedStatement.close();
+				myResultSet.close();
+			} catch (SQLException e) {
+				return false;
+			}
+		}
+		return existe;
+	}
+
+	public boolean eliminarEquipo(int codEquipo) {
+		boolean eliminado = false;
+		PreparedStatement myPreparedStatement = null;
+		String query = "DELETE FROM equipos WHERE cod_equipo = ?";
+		try {
+			myPreparedStatement = this.myConnection.prepareStatement(query);
+			myPreparedStatement.setInt(1, codEquipo);
+			myPreparedStatement.executeUpdate();
+
+			eliminado = true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			try {
+				myPreparedStatement.close();
+			} catch (SQLException e) {
+				return false;
+			}
+		}
+		return eliminado;
 	}
 
 	/**** OPERACIONES CON CARTA ****/

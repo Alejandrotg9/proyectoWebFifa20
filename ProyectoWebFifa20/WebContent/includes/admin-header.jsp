@@ -45,6 +45,8 @@
 						<li><a href="">Eliminar</a>
 							<ul>
 								<li><a href="http://localhost:8080/ProyectoWebFifa20/admin/baja-jugador.jsp">Jugador</a></li>
+								<li><a href="http://localhost:8080/ProyectoWebFifa20/admin/baja-equipo.jsp">Equipo</a></li>
+								<li><a href="http://localhost:8080/ProyectoWebFifa20/admin/baja-liga.jsp">Liga</a></li>
 
 							</ul></li>
 						<li><a href="#">Opción 3</a>
