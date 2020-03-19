@@ -65,4 +65,15 @@ public class Operaciones {
 		int nuevoCodJugador = bdController.dameCodUltimoJugador() + 1;
 		return nuevoCodJugador;
 	}
+
+	public static boolean esNumero(String parametro) {
+		boolean esNumero;
+		try {
+			Integer.parseInt(parametro);
+			esNumero = true;
+		} catch (NumberFormatException e) {
+			esNumero = false;
+		}
+		return esNumero;
+	}
 }

@@ -13,68 +13,93 @@
 		String nombre = request.getParameter("nombreJugador");
 		int codEquipo = Integer.parseInt(request.getParameter("codEquipo"));
 		String pierna = request.getParameter("piernaJugador");
-		int altura = Integer.parseInt(request.getParameter("alturaJugador"));
+		String altura = request.getParameter("alturaJugador");
 		String pais = request.getParameter("paisJugador");
 
 		Equipo equipoJugador = bdController.dameEquipoPorCodigo(codEquipo);
 
-		Jugador nuevoJugador = new Jugador(Operaciones.ponerCodJugador(), nombre, equipoJugador, pierna, altura,
-				pais);
+		if (!altura.isEmpty() && Operaciones.esNumero(altura)) {
+			int alturaJugador = Integer.parseInt(altura);
 
-		if (!bdController.existeJugador(nuevoJugador.getCodigo_jugador())) {
+			Jugador nuevoJugador = new Jugador(Operaciones.ponerCodJugador(), nombre, equipoJugador, pierna,
+					alturaJugador, pais);
 
-			if (bdController.altaJugador(nuevoJugador)) {
-				response.sendRedirect("./alta-jugador.jsp?estado=opt_completada");
+			if (!bdController.existeJugador(nuevoJugador.getCodigo_jugador())) {
+
+				if (bdController.altaJugador(nuevoJugador)) {
+					response.sendRedirect("./alta-jugador.jsp?estado=opt_completada");
+				} else {
+					response.sendRedirect("./alta-jugador.jsp?error=opt_fallida");
+				}
 			} else {
-				response.sendRedirect("./alta-jugador.jsp?error=opt_fallida");
+				response.sendRedirect("./alta-jugador.jsp?error=jugador_existe");
 			}
+
 		} else {
-			response.sendRedirect("./alta-jugador.jsp?error=jugador_existe");
+			response.sendRedirect("./alta-jugador.jsp?error=altura_mal");
 		}
+
 		break;
 
 	case "bajaJugador":
-		int codJugador = Integer.parseInt(request.getParameter("codJugador"));
+		String codJugador = request.getParameter("codJugador");
 
-		if (bdController.existeJugador(codJugador)) {
+		if (!codJugador.isEmpty() && Operaciones.esNumero(codJugador)) {
+			int numJugador = Integer.parseInt(codJugador);
+			if (bdController.existeJugador(numJugador)) {
 
-			if (bdController.eliminarJugador(codJugador)) {
-				response.sendRedirect("./baja-jugador.jsp?estado=opt_completada");
+				if (bdController.eliminarJugador(numJugador)) {
+					response.sendRedirect("./baja-jugador.jsp?estado=opt_completada");
+				} else {
+					response.sendRedirect("./baja-jugador.jsp?error=opt_fallida");
+				}
 			} else {
-				response.sendRedirect("./baja-jugador.jsp?error=opt_fallida");
+				response.sendRedirect("./baja-jugador.jsp?error=jugador_no_existe");
 			}
 		} else {
-			response.sendRedirect("./baja-jugador.jsp?error=jugador_no_existe");
+			response.sendRedirect("./baja-jugador.jsp?error=codigo_mal");
 		}
 		break;
 
 	case "bajaEquipo":
-		int codEquipoBaja = Integer.parseInt(request.getParameter("codEquipo"));
+		String codEquipoBaja = request.getParameter("codEquipo");
 
-		if (bdController.existeEquipo(codEquipoBaja)) {
+		if (!codEquipoBaja.isEmpty() && Operaciones.esNumero(codEquipoBaja)) {
+			int numEquipoBaja = Integer.parseInt(codEquipoBaja);
 
-			if (bdController.eliminarEquipo(codEquipoBaja)) {
-				response.sendRedirect("./baja-equipo.jsp?estado=opt_completada");
+			if (bdController.existeEquipo(numEquipoBaja)) {
+
+				if (bdController.eliminarEquipo(numEquipoBaja)) {
+					response.sendRedirect("./baja-equipo.jsp?estado=opt_completada");
+				} else {
+					response.sendRedirect("./baja-equipo.jsp?error=opt_fallida");
+				}
 			} else {
-				response.sendRedirect("./baja-equipo.jsp?error=opt_fallida");
+				response.sendRedirect("./baja-equipo.jsp?error=equipo_no_existe");
 			}
 		} else {
-			response.sendRedirect("./baja-equipo.jsp?error=equipo_no_existe");
+			response.sendRedirect("./baja-equipo.jsp?error=codigo_mal");
 		}
 		break;
 
 	case "bajaLiga":
-		int codLiga = Integer.parseInt(request.getParameter("codLiga"));
+		String codLiga = request.getParameter("codLiga");
 
-		if (bdController.existeLiga(codLiga)) {
+		if (!codLiga.isEmpty() && Operaciones.esNumero(codLiga)) {
+			int numLiga = Integer.parseInt(codLiga);
 
-			if (bdController.eliminarLiga(codLiga)) {
-				response.sendRedirect("./baja-liga.jsp?estado=opt_completada");
+			if (bdController.existeLiga(numLiga)) {
+
+				if (bdController.eliminarLiga(numLiga)) {
+					response.sendRedirect("./baja-liga.jsp?estado=opt_completada");
+				} else {
+					response.sendRedirect("./baja-liga.jsp?error=opt_fallida");
+				}
 			} else {
-				response.sendRedirect("./baja-liga.jsp?error=opt_fallida");
+				response.sendRedirect("./baja-liga.jsp?error=liga_no_existe");
 			}
 		} else {
-			response.sendRedirect("./baja-liga.jsp?error=liga_no_existe");
+			response.sendRedirect("./baja-liga.jsp?error=codigo_mal");
 		}
 		break;
 	default:

@@ -71,8 +71,10 @@
 						%>
 						El Jugador ya esiste.
 						<%
-							}
+							}else if(error.equalsIgnoreCase("altura_mal")){
 						%>
+						La altura debe ser un Número.
+						<%} %>
 					</div>
 					<%
 						}

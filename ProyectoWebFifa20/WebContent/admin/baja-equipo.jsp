@@ -49,6 +49,10 @@
 						%>
 						No exsiste equipo con ese código.
 						<%
+							} else if (error.equalsIgnoreCase("codigo_mal")) {
+						%>
+						El código no puedo estar vacío y a de ser un número.
+						<%
 							}
 						%>
 

@@ -40,7 +40,7 @@
 					<%
 						if (error != null) {
 					%>
-					<div class="alert alert-danger container w-25" role="alert">
+					<div class="alert alert-danger container" role="alert">
 						<%
 							if (error.equalsIgnoreCase("opt_fallida")) {
 						%>
@@ -50,9 +50,10 @@
 						%>
 						No exsiste jugador con ese código.
 						<%
-							}
+							}else if(error.equalsIgnoreCase("codigo_mal")){
 						%>
-
+						El código no puedo estar vacío y a de ser un número.
+						<%} %>
 					</div>
 					<%
 						}
