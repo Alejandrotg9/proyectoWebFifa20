@@ -5,7 +5,7 @@
 
 <%
 	BDController controladorBD = new BDController();
-	ArrayList<Equipo> equipos = controladorBD.dameEquipos();
+	ArrayList<Liga> ligas = controladorBD.dameLigas();
 	String error = request.getParameter("error");
 	String estado = request.getParameter("estado");
 %>
@@ -18,35 +18,26 @@
 			<!-- Content -->
 			<article>
 				<section class="col-6 col-12-narrower mx-auto">
-					<h2>Alta Jugador</h2>
+					<h2>Alta Equipo</h2>
 					<form action="operaciones.jsp" method="POST">
 						<div class="row gtr-50">
-							<label class="">Nombre del Jugador <input type="text"
-								name="nombreJugador" required="required" placeholder="Nombre"
+							<label class="">Nombre del Equipo <input type="text"
+								name="nombreEquipo" required="required" placeholder="Nombre"
 								style="width: 450px" maxlength="20" />
-							</label> <label>Equipo <select class="custom-select"
-								required="required" id="inputGroupSelect02" name="codEquipo"
+							</label> <label>Seleccione una Liga <select class="custom-select"
+								required="required" id="inputGroupSelect02" name="codLiga"
 								style="height: 3.2rem">
 									<%
-										for (Equipo equipo : equipos) {
+										for (Liga liga : ligas) {
 									%>
 									<option
-										style="background-image: url('../images/equipos/<%=equipo.getCodigo_equipo()%>.png');"
-										value="<%=equipo.getCodigo_equipo()%>"><%=equipo.getNombre_equipo()%></option>
+										value="<%=liga.getCod_liga()%>"><%=liga.getNombre_liga()%></option>
 									<%
 										}
 									%>
 							</select>
-							</label> <label class="">Pierna <input required="required"
-								type="text" name="piernaJugador" placeholder="Pierna"
-								maxlength="9" />
-							</label> <label class="">Altura <input required="required"
-								type="number" name="alturaJugador" placeholder="Altura"
-								maxlength="3" />
-							</label> <label class="">Pais <input required="required"
-								type="text" name="paisJugador" placeholder="Pais" maxlength="20" />
-							</label> <input name="opt" value="altaJugador"
-								style="visibility: hidden;" />
+							</label>   
+							<input name="opt" value="altaEquipo" style="visibility: hidden;" />
 
 						</div>
 
@@ -65,15 +56,15 @@
 						<%
 							if (error.equalsIgnoreCase("opt_fallida")) {
 						%>
-						Error al añadir al Jugador.
+						Error al añadir el Equipo.
 						<%
-							} else if (error.equalsIgnoreCase("jugador_existe")) {
+							} else if (error.equalsIgnoreCase("equipo_existe")) {
 						%>
-						El Jugador ya esiste.
+						El Equipo ya esiste.
 						<%
-							}else if(error.equalsIgnoreCase("numeros_mal")){
+							}else if(error.equalsIgnoreCase("campos_erroneos")){
 						%>
-						La altura debe ser un Número.
+						El nombre no puede estar vacío.
 						<%} %>
 					</div>
 					<%
@@ -85,7 +76,7 @@
 						<%
 							if (estado.equalsIgnoreCase("opt_completada")) {
 						%>
-						Jugador añadido correctamente.
+						Equipo añadido correctamente.
 						<%
 							}
 						%>

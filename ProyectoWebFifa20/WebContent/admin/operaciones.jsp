@@ -11,16 +11,18 @@
 	switch (opt) {
 	case "altaJugador":
 		String nombre = request.getParameter("nombreJugador");
-		int codEquipo = Integer.parseInt(request.getParameter("codEquipo"));
+		String codEquipo = request.getParameter("codEquipo");
 		String pierna = request.getParameter("piernaJugador");
 		String altura = request.getParameter("alturaJugador");
 		String pais = request.getParameter("paisJugador");
 
-		Equipo equipoJugador = bdController.dameEquipoPorCodigo(codEquipo);
+		if (!altura.isEmpty() && Operaciones.esNumero(altura) && !codEquipo.isEmpty()
+				&& Operaciones.esNumero(codEquipo)) {
 
-		if (!altura.isEmpty() && Operaciones.esNumero(altura)) {
+			int codigoEquipo = Integer.parseInt(codEquipo);
 			int alturaJugador = Integer.parseInt(altura);
 
+			Equipo equipoJugador = bdController.dameEquipoPorCodigo(codigoEquipo);
 			Jugador nuevoJugador = new Jugador(Operaciones.ponerCodJugador(), nombre, equipoJugador, pierna,
 					alturaJugador, pais);
 
@@ -36,7 +38,53 @@
 			}
 
 		} else {
-			response.sendRedirect("./alta-jugador.jsp?error=altura_mal");
+			response.sendRedirect("./alta-jugador.jsp?error=numeros_mal");
+		}
+
+		break;
+
+	case "altaLiga":
+		String nombreLiga = request.getParameter("nombreLiga");
+		String paisLiga = request.getParameter("paisLiga");
+
+		if (!nombreLiga.isEmpty() && !paisLiga.isEmpty()) {
+			Liga nuevaLiga = new Liga(Operaciones.ponerCodLiga(), nombreLiga, paisLiga);
+
+			if (!bdController.existeLigaPorNombre(nuevaLiga.getNombre_liga())) {
+				if (bdController.altaLiga(nuevaLiga)) {
+					response.sendRedirect("./alta-liga.jsp?estado=opt_completada");
+				} else {
+					response.sendRedirect("./alta-liga.jsp?error=opt_fallida");
+				}
+			} else {
+				response.sendRedirect("./alta-liga.jsp?error=liga_existe");
+			}
+		} else {
+			response.sendRedirect("./alta-liga.jsp?error=campos_vacios");
+		}
+
+		break;
+	case "altaEquipo":
+		String nombreEquipo = request.getParameter("nombreEquipo");
+		String codLigaNuevoEquipo = request.getParameter("codLiga");
+
+		if (!nombreEquipo.isEmpty() && Operaciones.esNumero(codLigaNuevoEquipo)) {
+			int codigoLiga = Integer.parseInt(codLigaNuevoEquipo);
+			Liga nuevaLiga = bdController.dameLigaPorCodigo(codigoLiga);
+			Equipo nuevoEquipo = new Equipo(Operaciones.ponerCodEquipo(), nombreEquipo, nuevaLiga);
+
+			if (!bdController.existeEquipoPorNombre(nuevoEquipo.getNombre_equipo())) {
+				if (bdController.altaEquipo(nuevoEquipo)) {
+					response.sendRedirect("./alta-equipo.jsp?estado=opt_completada");
+				} else {
+					response.sendRedirect("./alta-equipo.jsp?error=opt_fallida");
+				}
+			} else {
+				response.sendRedirect("./alta-equipo.jsp?error=equipo_existe");
+			}
+
+		} else {
+			response.sendRedirect("./alta-equipo.jsp?error=campos_erroneos");
 		}
 
 		break;

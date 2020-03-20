@@ -18,35 +18,18 @@
 			<!-- Content -->
 			<article>
 				<section class="col-6 col-12-narrower mx-auto">
-					<h2>Alta Jugador</h2>
+					<h2>Alta Liga</h2>
 					<form action="operaciones.jsp" method="POST">
 						<div class="row gtr-50">
-							<label class="">Nombre del Jugador <input type="text"
-								name="nombreJugador" required="required" placeholder="Nombre"
+							<label class="">Nombre de la Liga <input type="text"
+								name="nombreLiga" required="required" placeholder="Nombre"
 								style="width: 450px" maxlength="20" />
-							</label> <label>Equipo <select class="custom-select"
-								required="required" id="inputGroupSelect02" name="codEquipo"
-								style="height: 3.2rem">
-									<%
-										for (Equipo equipo : equipos) {
-									%>
-									<option
-										style="background-image: url('../images/equipos/<%=equipo.getCodigo_equipo()%>.png');"
-										value="<%=equipo.getCodigo_equipo()%>"><%=equipo.getNombre_equipo()%></option>
-									<%
-										}
-									%>
-							</select>
-							</label> <label class="">Pierna <input required="required"
-								type="text" name="piernaJugador" placeholder="Pierna"
-								maxlength="9" />
-							</label> <label class="">Altura <input required="required"
-								type="number" name="alturaJugador" placeholder="Altura"
-								maxlength="3" />
+							</label>
 							</label> <label class="">Pais <input required="required"
-								type="text" name="paisJugador" placeholder="Pais" maxlength="20" />
-							</label> <input name="opt" value="altaJugador"
-								style="visibility: hidden;" />
+								type="text" name="paisLiga" placeholder="Nombre del País"
+								maxlength="9" />
+							</label>
+							<input name="opt" value="altaLiga" style="visibility: hidden;" />
 
 						</div>
 
@@ -65,15 +48,15 @@
 						<%
 							if (error.equalsIgnoreCase("opt_fallida")) {
 						%>
-						Error al añadir al Jugador.
+						Error al añadir la Liga.
 						<%
-							} else if (error.equalsIgnoreCase("jugador_existe")) {
+							} else if (error.equalsIgnoreCase("liga_existe")) {
 						%>
-						El Jugador ya esiste.
+						La liga ya existe.
 						<%
-							}else if(error.equalsIgnoreCase("numeros_mal")){
+							}else if(error.equalsIgnoreCase("campos_vacios")){
 						%>
-						La altura debe ser un Número.
+						Los campos no pueden estar vacíos.
 						<%} %>
 					</div>
 					<%
@@ -85,7 +68,7 @@
 						<%
 							if (estado.equalsIgnoreCase("opt_completada")) {
 						%>
-						Jugador añadido correctamente.
+						Liga añadida correctamente.
 						<%
 							}
 						%>

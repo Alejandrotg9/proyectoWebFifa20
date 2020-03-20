@@ -66,6 +66,18 @@ public class Operaciones {
 		return nuevoCodJugador;
 	}
 
+	public static int ponerCodLiga() {
+		BDController bdController = new BDController();
+		int nuevoCodLiga= bdController.dameCodUltimaLiga() + 1;
+		return nuevoCodLiga;
+	}
+	
+	public static int ponerCodEquipo() {
+		BDController bdController = new BDController();
+		int nuevoCodEquipo= bdController.dameCodUltimoEquipo() + 1;
+		return nuevoCodEquipo;
+	}
+	
 	public static boolean esNumero(String parametro) {
 		boolean esNumero;
 		try {
@@ -76,4 +88,6 @@ public class Operaciones {
 		}
 		return esNumero;
 	}
+	
+	
 }

@@ -40,6 +40,8 @@
 						<li><a style="cursor: default;">Añadir</a>
 							<ul>
 								<li><a href="http://localhost:8080/ProyectoWebFifa20/admin/alta-jugador.jsp">Jugador</a></li>
+								<li><a href="http://localhost:8080/ProyectoWebFifa20/admin/alta-liga.jsp">Liga</a></li>
+								<li><a href="http://localhost:8080/ProyectoWebFifa20/admin/alta-equipo.jsp">Equipo</a></li>
 
 							</ul></li>
 						<li><a href="">Eliminar</a>

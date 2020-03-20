@@ -371,6 +371,59 @@ public class BDController {
 		return existe;
 	}
 
+	public boolean existeLigaPorNombre(String nombreLiga) {
+		boolean existe = false;
+		PreparedStatement myPreparedStatement = null;
+		ResultSet myResultSet = null;
+		String query = "SELECT nombre FROM ligas WHERE nombre = ?";
+
+		try {
+			myPreparedStatement = this.myConnection.prepareStatement(query);
+			myPreparedStatement.setString(1, nombreLiga);
+			myResultSet = myPreparedStatement.executeQuery();
+
+			while (myResultSet.next()) {
+				existe = true;
+			}
+		} catch (SQLException e) {
+			return false;
+		} finally {
+			try {
+				myPreparedStatement.close();
+				myResultSet.close();
+			} catch (SQLException e) {
+				return false;
+			}
+		}
+		return existe;
+	}
+
+	public Integer dameCodUltimaLiga() {
+		int codJugador = 0;
+		Statement myStatement = null;
+		ResultSet myResultSet = null;
+		String query = "SELECT MAX(cod_liga) codLiga FROM ligas";
+
+		try {
+			myStatement = this.myConnection.createStatement();
+			myResultSet = myStatement.executeQuery(query);
+
+			while (myResultSet.next()) {
+				codJugador = myResultSet.getInt("codLiga");
+			}
+		} catch (SQLException e) {
+			return 0;
+		} finally {
+			try {
+				myStatement.close();
+				myResultSet.close();
+			} catch (SQLException e) {
+				return 0;
+			}
+		}
+		return codJugador;
+	}
+
 	public boolean eliminarLiga(int codLiga) {
 		boolean eliminado = false;
 		PreparedStatement myPreparedStatement = null;
@@ -392,6 +445,31 @@ public class BDController {
 			}
 		}
 		return eliminado;
+	}
+
+	public boolean altaLiga(Liga liga) {
+		boolean anadido = false;
+		PreparedStatement myPreparedStatement = null;
+		String query = "INSERT INTO ligas VALUES(?,?,?)";
+		try {
+			myPreparedStatement = this.myConnection.prepareStatement(query);
+			myPreparedStatement.setInt(1, liga.getCod_liga());
+			myPreparedStatement.setString(2, liga.getNombre_liga());
+			myPreparedStatement.setString(3, liga.getPais());
+			myPreparedStatement.executeUpdate();
+
+			anadido = true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			try {
+				myPreparedStatement.close();
+			} catch (SQLException e) {
+				return false;
+			}
+		}
+		return anadido;
 	}
 
 	/**** OPERACIONES CON EQUIPOS ****/
@@ -534,7 +612,33 @@ public class BDController {
 		}
 		return equipos;
 	}
+	
+	public Integer dameCodUltimoEquipo() {
+		int codJugador = 0;
+		Statement myStatement = null;
+		ResultSet myResultSet = null;
+		String query = "SELECT MAX(cod_equipo) codEquipo FROM equipos";
 
+		try {
+			myStatement = this.myConnection.createStatement();
+			myResultSet = myStatement.executeQuery(query);
+
+			while (myResultSet.next()) {
+				codJugador = myResultSet.getInt("codEquipo");
+			}
+		} catch (SQLException e) {
+			return 0;
+		} finally {
+			try {
+				myStatement.close();
+				myResultSet.close();
+			} catch (SQLException e) {
+				return 0;
+			}
+		}
+		return codJugador;
+	}
+	
 	public boolean existeEquipo(int codEquipo) {
 		boolean existe = false;
 		PreparedStatement myPreparedStatement = null;
@@ -562,6 +666,33 @@ public class BDController {
 		return existe;
 	}
 
+	public boolean existeEquipoPorNombre(String nombreEquipo) {
+		boolean existe = false;
+		PreparedStatement myPreparedStatement = null;
+		ResultSet myResultSet = null;
+		String query = "SELECT nombre FROM equipos WHERE nombre = ?";
+
+		try {
+			myPreparedStatement = this.myConnection.prepareStatement(query);
+			myPreparedStatement.setString(1, nombreEquipo);
+			myResultSet = myPreparedStatement.executeQuery();
+
+			while (myResultSet.next()) {
+				existe = true;
+			}
+		} catch (SQLException e) {
+			return false;
+		} finally {
+			try {
+				myPreparedStatement.close();
+				myResultSet.close();
+			} catch (SQLException e) {
+				return false;
+			}
+		}
+		return existe;
+	}
+	
 	public boolean eliminarEquipo(int codEquipo) {
 		boolean eliminado = false;
 		PreparedStatement myPreparedStatement = null;
@@ -583,6 +714,31 @@ public class BDController {
 			}
 		}
 		return eliminado;
+	}
+
+	public boolean altaEquipo(Equipo nuevoEquipo) {
+		boolean anadido = false;
+		PreparedStatement myPreparedStatement = null;
+		String query = "INSERT INTO equipos VALUES(?,?,?)";
+		try {
+			myPreparedStatement = this.myConnection.prepareStatement(query);
+			myPreparedStatement.setInt(1, nuevoEquipo.getCodigo_equipo());
+			myPreparedStatement.setString(2, nuevoEquipo.getNombre_equipo());
+			myPreparedStatement.setInt(3, nuevoEquipo.getLiga().getCod_liga());
+			myPreparedStatement.executeUpdate();
+
+			anadido = true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			try {
+				myPreparedStatement.close();
+			} catch (SQLException e) {
+				return false;
+			}
+		}
+		return anadido;
 	}
 
 	/**** OPERACIONES CON CARTA ****/
