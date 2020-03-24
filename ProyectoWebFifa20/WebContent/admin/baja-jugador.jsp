@@ -5,6 +5,7 @@
 
 <%
 	BDController bdController = new BDController();
+	ArrayList<Jugador> jugadores = bdController.dameJugadores();
 	String error = request.getParameter("error");
 	String estado = request.getParameter("estado");
 %>
@@ -18,23 +19,28 @@
 			<article>
 				<section class="col-6 col-12-narrower mx-auto">
 					<h2>Baja Jugador</h2>
-					<form class="d-inline-block" action="operaciones.jsp" method="POST">
+					<form class="d-inline-block mt-2" action="operaciones.jsp"
+						method="POST" style="width: 350px;">
 						<div class="row gtr-50">
-							<label class="">Código del jugador <input type="number"
-								name="codJugador" required="required"
-								placeholder="Código del Jugador" style="width: 450px"
-								maxlength="3" />
-							</label> <input name="opt" value="bajaJugador"
-								style="visibility: hidden;" />
+							<label>Seleccione un Jugador <select name="codJugador"
+								class="p-2" id="jugadores" style="border: 2px solid red;">
+									<%
+										for (Jugador jugador : jugadores) {
+									%>
+									<option value="<%=jugador.getCodigo_jugador()%>"><%=jugador.getNombre_jugador()%></option>
+									<%
+										}
+									%>
+							</select>
+							</label>
 						</div>
-
 						<div style="padding-top: 22px;">
 							<ul class="actions">
 								<li><input type="submit" class="button alt"
 									value="Eliminar" /></li>
 							</ul>
 						</div>
-
+						<input name="opt" value="bajaJugador" style="visibility: hidden;" />
 					</form>
 					<!-- Compruebo que no exista ningún error -->
 					<%
@@ -50,10 +56,12 @@
 						%>
 						No exsiste jugador con ese código.
 						<%
-							}else if(error.equalsIgnoreCase("codigo_mal")){
+							} else if (error.equalsIgnoreCase("codigo_mal")) {
 						%>
 						El código no puedo estar vacío y a de ser un número.
-						<%} %>
+						<%
+							}
+						%>
 					</div>
 					<%
 						}

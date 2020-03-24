@@ -72,5 +72,6 @@
 <script src="http://localhost:8080/ProyectoWebFifa20/assets/js/breakpoints.min.js"></script>
 <script src="http://localhost:8080/ProyectoWebFifa20/assets/js/util.js"></script>
 <script src="http://localhost:8080/ProyectoWebFifa20/assets/js/main.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
 </body>
 </html>

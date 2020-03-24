@@ -4561,3 +4561,7 @@ select{
 	font-size: 1.2rem !important;
 	cursor: pointer;
 }
+
+.row.gtr-50{
+	padding: 0px !important;
+}
