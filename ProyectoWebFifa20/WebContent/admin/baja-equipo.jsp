@@ -5,6 +5,7 @@
 
 <%
 	BDController bdController = new BDController();
+	ArrayList<Equipo> equipos = bdController.dameEquipos();
 	String error = request.getParameter("error");
 	String estado = request.getParameter("estado");
 %>
@@ -18,16 +19,24 @@
 			<article>
 				<section class="col-6 col-12-narrower mx-auto">
 					<h2>Baja Equipo</h2>
-					<form class="d-inline-block" action="operaciones.jsp" method="POST">
-						<div class="row gtr-50">
-							<label class="">Código del equipo <input type="number"
-								name="codEquipo" required="required"
-								placeholder="Código del Equipo" style="width: 450px"
-								maxlength="3" />
+					<form class="d-inline-block mt-2" action="operaciones.jsp"
+						method="POST" style="width: 300px;">
+						<div class="row gtr-50" style="height: 115px;">
+							<label>Seleccione un Equipo 
+							<select name="codEquipo"
+								class="p-2" id="equipos">
+									<%
+												for (Equipo equipo : equipos) {
+											%>
+									<option value="<%=equipo.getCodigo_equipo()%>"><%=equipo.getNombre_equipo()%></option>
+									<%
+												}
+											%>
+							</select>
 							</label> <input name="opt" value="bajaEquipo" style="visibility: hidden;" />
 						</div>
 
-						<div style="padding-top: 22px;">
+						<div>
 							<ul class="actions">
 								<li><input type="submit" class="button alt"
 									value="Eliminar" /></li>
@@ -80,4 +89,21 @@
 		</div>
 	</div>
 </section>
+
 <jsp:include page="../includes/footer.jsp"></jsp:include>
+<script>
+//Menú desplegable de Baja Equipo.
+$(document).ready(function(){
+ $("#equipos").select2({
+  templateResult: formatOptions
+ });
+});
+ 
+function formatOptions (state) {
+  if (!state.id) { return state.text; }
+   var $state = $(
+   '<span><img width="40" sytle="display: inline-block;" src="../images/equipos/' + state.element.value.toLowerCase() + '.png" /> ' + state.text + '</span>'
+  );
+  return $state;
+}
+</script>
