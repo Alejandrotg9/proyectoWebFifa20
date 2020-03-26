@@ -24,18 +24,16 @@
 							<label class="">Nombre del Jugador <input type="text"
 								name="nombreJugador" required="required" placeholder="Nombre"
 								style="width: 450px" maxlength="20" />
-							</label> <label>Equipo <select class="custom-select"
-								required="required" id="inputGroupSelect02" name="codEquipo"
-								style="height: 3.2rem">
+							</label> <label>Equipo 
+							</br>
+								<select name="codEquipo" class="p-2" id="equiposJugador">
 									<%
-										for (Equipo equipo : equipos) {
-									%>
-									<option
-										style="background-image: url('../images/equipos/<%=equipo.getCodigo_equipo()%>.png');"
-										value="<%=equipo.getCodigo_equipo()%>"><%=equipo.getNombre_equipo()%></option>
+												for (Equipo equipo : equipos) {
+											%>
+									<option value="<%=equipo.getCodigo_equipo()%>"><%=equipo.getNombre_equipo()%></option>
 									<%
-										}
-									%>
+												}
+											%>
 							</select>
 							</label> <label class="">Pierna <input required="required"
 								type="text" name="piernaJugador" placeholder="Pierna"
@@ -100,3 +98,19 @@
 	</div>
 </section>
 <jsp:include page="../includes/footer.jsp"></jsp:include>
+<script>
+//Menú desplegable de Alta Jugador.
+$(document).ready(function(){
+ $("#equiposJugador").select2({
+  templateResult: formatOptions
+ });
+});
+ 
+function formatOptions (state) {
+  if (!state.id) { return state.text; }
+   var $state = $(
+   '<span><img width="40" sytle="display: inline-block;" src="../images/equipos/' + state.element.value.toLowerCase() + '.png" /> ' + state.text + '</span>'
+  );
+  return $state;
+}
+</script>

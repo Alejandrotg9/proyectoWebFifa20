@@ -24,18 +24,20 @@
 							<label class="">Nombre del Equipo <input type="text"
 								name="nombreEquipo" required="required" placeholder="Nombre"
 								style="width: 450px" maxlength="20" />
-							</label> <label>Seleccione una Liga <select class="custom-select"
-								required="required" id="inputGroupSelect02" name="codLiga"
-								style="height: 3.2rem">
+							</label> <label>Seleccione una Liga
+							
+							
+							</br>
+								<select name="codLiga" class="p-2" id="ligasEquipos">
 									<%
-										for (Liga liga : ligas) {
-									%>
-									<option
-										value="<%=liga.getCod_liga()%>"><%=liga.getNombre_liga()%></option>
+									for (Liga liga : ligas) { 
+											%>
+									<option value="<%=liga.getCod_liga()%>"><%=liga.getNombre_liga()%></option>
 									<%
-										}
-									%>
+												}
+											%>
 							</select>
+
 							</label>   
 							<input name="opt" value="altaEquipo" style="visibility: hidden;" />
 
@@ -91,3 +93,19 @@
 	</div>
 </section>
 <jsp:include page="../includes/footer.jsp"></jsp:include>
+<script>
+//Menú desplegable de Baja Equipo.
+$(document).ready(function(){
+ $("#ligasEquipos").select2({
+  templateResult: formatOptions
+ });
+});
+ 
+function formatOptions (state) {
+  if (!state.id) { return state.text; }
+   var $state = $(
+   '<span><img width="40" sytle="display: inline-block;" src="../images/ligas/' + state.element.value.toLowerCase() + '.png" /> ' + state.text + '</span>'
+  );
+  return $state;
+}
+</script>
